@@ -150,19 +150,19 @@
 </ul>
 <p>The package_info.json file goes right in the root of your zip file. The node category folders with the node python files should also go in the zip file. The folder structure should look like this:</p>
 <p><strong>.zip file</strong><br>
-|__package_info.json<br>
-|__node category<br>
-|____node file.py<br>
-|____node file.py<br>
-|__node category<br>
-|____node file.py<br></p>
+|_package_info.json<br>
+|\category one<br>
+|____node_one.py<br>
+|____node_two.py<br>
+|\category two<br>
+|____node_three.py<br></p>
 <p>The nodes parameter in the package_json should be a list of strings. Those strings should be relative filepaths to the different nodes.<br>An example could look like this:</p>
-<pre><code class="json">[&quot;category one/node one.py&quot;,
-&quot;category one/node two.py&quot;,
-&quot;category two/node three.py&quot;]
+<pre><code class="json">[&quot;category one/node_one.py&quot;,
+&quot;category one/node_two.py&quot;,
+&quot;category two/node_three.py&quot;]
 </code></pre>
 
-<p>Once you finished packing up your zip file you are ready to distribute it to other people! Once again, make sure to let use know if you create a package so we can promote it.</p>
+<p>Once you finished packing up your zip file you are ready to distribute it to other people! Once again, make sure to let us know if you create a package so we can promote it.</p>
               
             </div>
           </div>
