@@ -26,11 +26,11 @@ The file should look like this:
 The package_info.json file goes right in the root of your zip file. The node category folders with the node python files should also go in the zip file. The folder structure should look like this:
 
 **.zip file**<br>
-|\_package_info.json<br>
-|\category one<br>
+|package_info.json<br>
+|category one<br>
 |\_\_\_\_node_one.py<br>
 |\_\_\_\_node_two.py<br>
-|\category two<br>
+|category two<br>
 |\_\_\_\_node_three.py<br>
 
 The nodes parameter in the package_json should be a list of strings. Those strings should be relative filepaths to the different nodes.<br>An example could look like this:

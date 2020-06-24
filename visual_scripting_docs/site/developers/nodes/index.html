@@ -74,6 +74,9 @@
     <a class="current" href="./">Creating Nodes</a>
     <ul class="subnav">
             
+    <li class="toctree-l3"><a href="#the-concept">The concept</a></li>
+    
+
     <li class="toctree-l3"><a href="#setting-up-a-node">Setting up a node</a></li>
     
 
@@ -122,7 +125,10 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="setting-up-a-node">Setting up a node</h1>
+                <h1 id="the-concept">The concept</h1>
+<p>The basic idea is that some of the nodes in the node tree are marked to be registered. Those are things like Start Operator or Create Panel. They mark the start of a block of code. Now the compiler will call the evaluate function on the node. This will return the python code of the node. This is not just text, but can also consist of other nodes that are connected to the start node. From here on the compiler will call evaluate on all the parts of the code that are nodes until all the code is text. This is the final python code and will get added to the addon. You will mainly write the evaluate function to give back the code that is returned. We provide a few helpful things to make that easier.</p>
+<p>The information below should be useful to get started, but if you want to create a specific node, try to look at other nodes that do similar things to figure out how to get the things you want to achieve.</p>
+<h1 id="setting-up-a-node">Setting up a node</h1>
 <p><strong>Python file:</strong></p>
 <p>To create a node, add your python file in the category directory you want it to go in. The name of the file doesn't matter.</p>
 <p><strong>Imports:</strong></p>
@@ -130,6 +136,7 @@
 <pre><code class="python">import bpy
 from ..base.base_node import SN_ScriptingBaseNode
 from ...compile.compiler import compiler
+from ..base.node_looks import node_colors, node_icons
 </code></pre>
 
 <ul>
@@ -140,7 +147,13 @@ from ...compile.compiler import compiler
 <p><strong>SN_ScriptingBaseNode:</strong> This is the basic Scripting Node which your created node will inherit from</p>
 </li>
 <li>
-<p><strong>compiler:</strong> This function returns the compiler object. You will only need one function from this as explained below</p>
+<p><strong>compiler:</strong> This function returns the compiler object. You will only need the socket_update function from this. You need to call this in any properties you create </p>
+</li>
+<li>
+<p><strong>node_colors:</strong> This is a dictionary with the colors that are used by nodes. An example of this can be seen below in the init function. Here you can set the color of the node. The possible options are ["INTERFACE", "LOGIC", "INPUT", "OPERATOR", "PROGRAM", "SCENE"]</p>
+</li>
+<li>
+<p><strong>node_icons:</strong> This is a dictionary with the icon names for the nodes. An example of this can be seen below under bl_icon. The possible options are ["INTERFACE", "LOGIC", "INPUT", "OPERATOR", "PROGRAM", "SCENE"]</p>
 </li>
 </ul>
 <p><strong>The node:</strong></p>
@@ -149,7 +162,13 @@ from ...compile.compiler import compiler
 
     bl_idname = &quot;SN_NodeName&quot;
     bl_label = &quot;The Nodes Label&quot;
+    bl_icon = node_icons[&quot;PROGRAM&quot;]
+
     _should_be_registered = False
+
+    _dynamic_layout_sockets = False
+
+    _debug_node = False
 
     @classmethod
     def poll(cls, ntree):
@@ -159,7 +178,8 @@ from ...compile.compiler import compiler
         compiler().socket_update(context)
 
     def init(self, context):
-        pass
+        self.use_custom_color = True
+        #self.color = node_colors[&quot;PROGRAM&quot;]
 
     def draw_buttons(self, context, layout):
         pass
@@ -176,6 +196,12 @@ from ...compile.compiler import compiler
             &quot;errors&quot;: []
         }
 
+    def layout_type(self):
+        return &quot;&quot;
+
+    def data_type(self, output):
+        return None
+
     def needed_imports(self):
         return []
 
@@ -187,7 +213,53 @@ from ...compile.compiler import compiler
 </code></pre>
 
 <ul>
-<li><strong><em>should_be_registered</em>:</strong> This property defines if the node should be registered. This should be true if the result of the node should add something to the register and unregister functions. Examples of this are the Create Operator and Create Panel nodes.</li>
+<li><strong><em>should_be_registered</em>:</strong> This property defines if the node should be registered. This should be true if the result of the node should add something to the register and unregister functions. Examples of this are the Create Operator and Create Panel nodes
+<br/><br/></li>
+<li><strong>_dynamic_layout_sockets:</strong> If this is true, layout sockets will be added to this node automatically. When a node is connected another one will be added, when one is disconnected it will be removed
+<br/><br/></li>
+<li><strong>_debug_node:</strong> If this is true, the output of the evaluate function will be printed in the console when it is compiled. This is useful for debugging
+<br/><br/></li>
+<li><strong>socket_update:</strong> You can use this as the update function of properties you create on the node. This is necessary to make the node work with the auto reload option
+<br/><br/></li>
+<li><strong>init:</strong> This function gets called when the node is created. Here you can create the node in- and outputs. This is a blender function and the in and outputs can be created as usual. The types of sockets are ["SN_StringSocket", "SN_FloatSocket", "SN_IntSocket", "SN_BooleanSocket", "SN_DataSocket", "SN_VectorSocket", "SN_EnumSocket", "SN_LayoutSocket", "SN_ProgramSocket", "SN_SceneDataSocket"]
+<br/><br/></li>
+<li><strong>draw_buttons:</strong> Here you can draw additional options on the node. This is a blender function and can be used as usual
+<br/><br/></li>
+<li><strong>copy:</strong> This function gets called when the node is copied. This is a blender function and can be used as usual
+<br/><br/></li>
+<li><strong>free:</strong> This function gets called when the node is deleted. This is a blender function and can be used as usual
+<br/><br/></li>
+<li><strong>evaluate:</strong> This is the function that the compiler will call to get the python code from the node. The function gets an output. You can use this if youre node has multiple outputs. This doesn't apply to most nodes but if you make something like a data node where every output returns a single line then you might need to use this. The function returns a dictionary. This will be explained below.
+<br/><br/></li>
+<li><strong>layout_type:</strong> This is needed if you create a layout node. An example is the Row node which returns "row". This can be used by connected nodes to find the layout type it should use. A Label node might call it on the connected node to return row.label
+<br/><br/></li>
+<li><strong>data_type</strong> This is only needed if you create a node that uses data properties. An example is the scene data properties node which returns "bpy.types." combined with the type of the selected property, which can be found using .fixed_type. It should also return "bpy.types." + the data type + ".bl_rna.properties['" + the selected property + "']" if the selected property is a collection. This can be used by connected nodes to get the properties of the connected data type using .bl_rna.properties and .fixed_type.
+<br/><br/></li>
+<li><strong>needed_imports:</strong> This contains a list of strings of the things that this node needs to import. The most common example is ["bpy"]
+<br/><br/></li>
+<li><strong>get_register_block:</strong> This is only needed if _should_be_registered is true. It returns a list of strings, where every string is one line in the register function of the addon.
+<br/><br/></li>
+<li><strong>get_unregister_block:</strong> This is only needed if _should_be_registered is true. It returns a list of strings, where every string is one line in the unregister function of the addon.</li>
+</ul>
+<p><strong><em>Evaluate function:</em></strong></p>
+<p>The evaluate function returns a dictionary containing a list called "blocks" and a list called "errors".</p>
+<p><strong>Blocks:</strong></p>
+<p>This is the code that the node creates. The blocks list contains dictionaries. These dictionaries have the following parameters:</p>
+<p><em>lines:</em> This is a list of code lines. Each line is either a list or a node socket. If it is a node socket, the compiler will call evaluate on the sockets node to generate the corresponding lines of code. This means that a socket without a list equates to multiple new lines of code. The other option is to have a list of strings and sockets. The sockets in these lists should belong to nodes which only return single lines. An example for this would be a print node where you have something like ["print(", connected_socket, ")"].</p>
+<p><em>indented:</em> This is also a list of lists and sockets and works the same way as the lines list. The different is that these lines will come after the lines list and will be indented. This can be used if you need to indent code in your node.</p>
+<p>You can nest these code blocks, meaning that you can put dictionaries with lines and indented code inside other lists of lines or indents. With this you should be able to create any code you could need.</p>
+<p><strong>Errors:</strong></p>
+<p>This is a list of dictionaries that have the following parameters. It contains the errors that the node has. This could be that the user has connected a wrong input or something similar:</p>
+<p><em>error:</em> This is the type of error. It's a string from the following list: ["test_error", "wrong_socket_inp", "no_connection_inp", "wrong_socket_out", "no_connection_out", "no_connection", "no_layout_connection", "no_name_func", "no_name_var", "no_var_available", "no_prop_selected", "wrong_prop"]</p>
+<p><strong>Helpful tools:</strong>
+We provide a few tools that should help you with the evaluating of nodes. You don't have to use these but they should make your life easier.</p>
+<ul>
+<li>
+<p><strong>SocketHandler:</strong> You can access the socket handler with self.SocketHandler. It helps you with getting the value of inputs that could be connected to other nodes. The most important function here is <em>socket_value</em> which takes the input socket. It also can take an optional parameter for if the result should be returned as a list which is only useful for layout and program sockets. The function returns the value of the socket or the connected socket. It also checks for errors and returns those as well. The second useful function is get_layout_values which returns all layout values as well as the errors for the given node</p>
+</li>
+<li>
+<p><strong>ErrorHandler:</strong> The function you will use here is handle_text. It checks for keywords in the text to see if they don't work with python syntax. This could be useful when creating something like a function which can't have any type of name</p>
+</li>
 </ul>
               
             </div>
