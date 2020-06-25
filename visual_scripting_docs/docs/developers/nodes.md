@@ -142,6 +142,8 @@ This is a list of dictionaries that have the following parameters. It contains t
 
 *error:* This is the type of error. It's a string from the following list: ["test_error", "wrong_socket_inp", "no_connection_inp", "wrong_socket_out", "no_connection_out", "no_connection", "no_layout_connection", "no_name_func", "no_name_var", "no_var_available", "no_prop_selected", "wrong_prop"]
 
+*node:* This is the node that caused the error. Usually this is self
+
 
 
 **Helpful tools:**
