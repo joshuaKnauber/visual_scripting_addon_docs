@@ -1,0 +1,15 @@
+{
+  "packages": [
+    {
+      "title": "test title package",
+      "text": [
+          "line 1",
+          "line 2",
+          "line 3",
+          "line 4",
+        ],
+      "price": "free",
+      "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    }
+  ]
+}
