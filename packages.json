@@ -1,8 +1,26 @@
 {
     "packages": [
         {
-            "title": "my cool package",
+            "title": "my cool package 1",
             "text": ["line 1", "line 2", "line 3"],
+            "price": "free",
+            "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        },
+        {
+            "title": "my cool package 2",
+            "text": ["line 1", "line 2", "line 3", "line 4", "line 5"],
+            "price": "free",
+            "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        },
+        {
+            "title": "my cool package 3",
+            "text": ["line 1", "line 2", "line 3", "line 4"],
+            "price": "free",
+            "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        },
+        {
+            "title": "my cool package 4",
+            "text": ["line 1", "line 2""],
             "price": "free",
             "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
         }
