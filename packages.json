@@ -1,0 +1,10 @@
+{
+    "packages": [
+        {
+            "title": "my cool package",
+            "text": ["line 1", "line 2", "line 3"],
+            "price": "free",
+            "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        }
+    ]
+}
