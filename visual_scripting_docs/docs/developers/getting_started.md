@@ -50,7 +50,7 @@ An example for the structure of your package zip file could look as follows:
 
 
 ## Get Started
-To actually get started developing we have a few recommendations. To work on a node you want to add to your package, you need to add it to temporarily add it to the addon itself.
+To actually get started developing we have a few recommendations. To work on a node you want to add to your package, you need to temporarily add it to the addon itself.
 
 Start by finding the folder where you have installed the visual scripting addon. You can find this in the user preferences in the addons panel under _File_.
 

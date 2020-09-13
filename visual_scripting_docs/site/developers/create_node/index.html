@@ -116,7 +116,7 @@
               
                 <h1 id="creating-a-node">Creating A Node</h1>
 <p>At the end of this page, you can find an empty example node which you can copy to quickly get started.</p>
-<p>In theory you could put multiple nodes into one file, but we don't recommend doing that to keep you files better organized.</p>
+<p>In theory you could put multiple nodes into one file, but we don't recommend doing that to keep your files better organized.</p>
 <h2 id="setup">Setup</h2>
 <p>You start by noting down the idnames of the nodes you want to create. This should be in the first lines of your file and written as a comment. Without this the addon will not find your node. We will use the print nodes structure as an example:</p>
 <pre><code class="python">#SN_PrintNode
@@ -347,6 +347,14 @@ def get_variable_line(self):
 </code></pre>
 
 <p>This example adds two variables to an array called <em>my_name</em>.</p>
+<hr />
+<hr />
+<p><strong>update_node(self)</strong></p>
+<p>This function is called when the node is updated. This is the case when, for example, a socket is connected.</p>
+<pre><code class="python">def update_node(self):
+    pass # do stuff to update your node
+</code></pre>
+
 <hr />
 <h2 id="accessing-variables">Accessing Variables</h2>
 <p>You can access the created variables via the generated addons collection property. This is done with <code>bpy.context.scene.sn_generated_addon_properties_UID_</code>.</p>

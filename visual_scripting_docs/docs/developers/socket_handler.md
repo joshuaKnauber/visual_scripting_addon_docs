@@ -48,6 +48,8 @@ self.sockets.create_input(self, "STRING", "My Socket")
 self.sockets.create_input(self, "FLOAT", "My Dynamic Socket", True)
 ```
 
+This function also returns the created socket, so you can set the properties explained above.
+
 ---
 
 
@@ -60,6 +62,8 @@ See _create_input_.
 self.sockets.create_output(self, "STRING", "My Socket")
 self.sockets.create_output(self, "FLOAT", "My Dynamic Socket", True)
 ```
+
+This function also returns the created socket, so you can set the properties explained above.
 
 ---
 

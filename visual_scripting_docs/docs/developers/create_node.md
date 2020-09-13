@@ -2,7 +2,7 @@
 
 At the end of this page, you can find an empty example node which you can copy to quickly get started.
 
-In theory you could put multiple nodes into one file, but we don't recommend doing that to keep you files better organized.
+In theory you could put multiple nodes into one file, but we don't recommend doing that to keep your files better organized.
 
 ##Setup
 
@@ -321,6 +321,19 @@ def get_array_line(self):
 ```
 
 This example adds two variables to an array called _my_name_.
+
+---
+
+
+---
+**update_node(self)**
+
+This function is called when the node is updated. This is the case when, for example, a socket is connected.
+
+```python
+def update_node(self):
+    pass # do stuff to update your node
+```
 
 ---
 

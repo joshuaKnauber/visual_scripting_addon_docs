@@ -139,7 +139,7 @@
 </code></pre>
 
 <h2 id="get-started">Get Started</h2>
-<p>To actually get started developing we have a few recommendations. To work on a node you want to add to your package, you need to add it to temporarily add it to the addon itself.</p>
+<p>To actually get started developing we have a few recommendations. To work on a node you want to add to your package, you need to temporarily add it to the addon itself.</p>
 <p>Start by finding the folder where you have installed the visual scripting addon. You can find this in the user preferences in the addons panel under <em>File</em>.</p>
 <p>In this folder you'll find a folder called nodes. This is the folder you'll work in. When you open up the folder you will find the directories corresponding to the node categories, as mentioned in the introduction. These are the installed categories and nodes. When a user installs your package, the zip files content will go in here. You don't need to and can't touch any of the other files in any of the addons folders. You only create your nodes in the corresponding folder for development and then put them in the zip file for distribution.</p>
 <p>To create a new category during development, you create a subfolder in <em>nodes</em> with the corresponding name. Now you need to add a file called __init__.py in that folder. This is for blender to recognize it as a part of the addon, but can be left empty. Note that you <strong>do not</strong> need to add this file in your final zip. This will be done automatically if necessary.</p>
