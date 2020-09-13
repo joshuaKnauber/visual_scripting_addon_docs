@@ -158,7 +158,7 @@ Input and Output data are lists. They contain one dictionary for each input/outp
 
 Most of the time you can use the code parameter in your lines to return the sockets value. For the print node example this would be ```["print(", node_data["input_data"][1]["code"], ")"]```.
 
-The **"indented"** lines work the same as the **"lines"** list, but they come after the lines and are one step indented. It is important to know that you can nest code blocks. This means you can put code blocks (dictionaries with _lines_ and _indented_ lists) in the lists instead of a line. You can see this better in the example above. This way you can create more complicated indents and nesting in your generated code.
+The **"indented"** list works the same as the **"lines"** list, but they come after the lines and are one step indented. It is important to know that you can nest code blocks. This means you can put code blocks (dictionaries with _lines_ and _indented_ lists) in the lists instead of a line. You can see this better in the example above. This way you can create more complicated indents and nesting in your generated code.
 
 Make sure you understand this structure before starting your nodes as it is very important for proper generated code.
 
