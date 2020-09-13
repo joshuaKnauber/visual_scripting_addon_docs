@@ -16,7 +16,7 @@ There are different socket types that you can create. The names listed below are
 * **FLOAT**: A float socket. You can set ```your_socket.use_factor``` to True, to have a factor slider from 0.0 to 1.0.
 <br><br>
 
-* **VECTOR**: A vector socket. You can set ```your_socket.is_color``` to True, to have a color displayed on your node. You can also set ```your_socket.use_four_numbers``` to True, to get an vector with four numbers.
+* **VECTOR**: A vector socket. You can set ```your_socket.is_color``` to True, to have a color displayed on your node. You can also set ```your_socket.use_four_numbers``` to True, to get a vector with four numbers.
 <br><br>
 
 * **DATA**: A data socket, which can have any of the previously mentioned sockets connected.
@@ -25,7 +25,7 @@ There are different socket types that you can create. The names listed below are
 * **EXECUTE**: An execute socket, which is used to define the program flow.
 <br><br>
 
-* **LAYOUT**: An execute socket, which is used to define the flow of a layout.
+* **LAYOUT**: A layout socket, which is used to define the flow of a layout.
 <br><br>
 
 * **OBJECT**: A socket for passing a singular data block between nodes. This is differentiated from a collection socket with the round input.

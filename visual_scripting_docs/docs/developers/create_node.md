@@ -274,7 +274,7 @@ def data_type(self, output):
 ---
 **reset_data_type(self, context)**
 
-This is used for for chains of data nodes. An example would be an Object Data node which has multiple Get Object Data Properties nodes connected after each other. Now the user changes the enum on the Object Data node. The result is that all connected nodes need to be updated because their options might change. As a result the Object Data node starts by calling reset_data_type on the connected node. This updates its values and then calls reset_data_type on the next node.
+This is used for "chains" of data nodes. An example would be an Object Data node which has multiple Get Object Data Properties nodes connected after each other. Now the user changes the enum on the Object Data node. The result is that all connected nodes need to be updated because their options might change. The Object Data node starts by calling reset_data_type on the connected node. This updates its values and then calls reset_data_type on the next node.
 
 So if you create a node which makes use of these features then you need to use the reset_data_type node for that and also call that function on all nodes connected to your nodes outputs when you update something that could change the connected nodes.
 
