@@ -1,15 +1,21 @@
-site_name: Visual Scripting Addon
+site_name: Serpens - Visual Scripting Addon
 theme: 'readthedocs'
 markdown_extensions:
   - admonition
 
 
 nav:
-  - Introduction: getting_started/index.md
+  - Introduction: index.md
 
-  - For developers:
-    - Introduction: developers/index.md
-    - Project Setup: developers/setup.md
-    - Creating Categories: developers/categories.md
-    - Creating Nodes: developers/nodes.md
-    - Distributing: developers/distributing.md
+  - Documentation:
+    - Getting Started: developers/getting_started.md
+    - Creating A Node: developers/create_node.md
+    - Socket Handler: developers/socket_handler.md
+    - Distribution: developers/distribution.md
+
+  - TEMP:
+    - Introduction: developers_2/index.md
+    - Project Setup: developers_2/setup.md
+    - Creating Categories: developers_2/categories.md
+    - Creating Nodes: developers_2/nodes.md
+    - Distributing: developers_2/distributing.md

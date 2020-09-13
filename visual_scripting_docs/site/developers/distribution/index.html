@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Distribution - Serpens - Visual Scripting Addon</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Distribution";
+    var mkdocs_page_input_path = "developers\\distribution.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Serpens - Visual Scripting Addon</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">Introduction</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Documentation</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../getting_started/">Getting Started</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../create_node/">Creating A Node</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../socket_handler/">Socket Handler</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Distribution</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#package-info">Package Info</a>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">TEMP</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="../../developers_2/index.md">Introduction</a>
+                    </li>
+                    <li class="toctree-l1"><a class="" href="../../developers_2/setup.md">Project Setup</a>
+                    </li>
+                    <li class="toctree-l1"><a class="" href="../../developers_2/categories.md">Creating Categories</a>
+                    </li>
+                    <li class="toctree-l1"><a class="" href="../../developers_2/nodes.md">Creating Nodes</a>
+                    </li>
+                    <li class="toctree-l1"><a class="" href="../../developers_2/distributing.md">Distributing</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Serpens - Visual Scripting Addon</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Documentation &raquo;</li>
+        
+      
+    
+    <li>Distribution</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="distribution">Distribution</h1>
+<p>To distribute your package, create a zip file. The name of this file doesn't affect the package itself.</p>
+<h2 id="package-info">Package Info</h2>
+<p>To distribute your package to others, you'll need to create a <em>package_info.json</em> file.</p>
+<p>The file should look like this:</p>
+<pre><code class="json">{
+    &quot;name&quot;: &quot;Name Of Your Package&quot;,
+    &quot;description&quot;: &quot;This is the packages description&quot;,
+    &quot;author&quot;: &quot;Your Name&quot;,
+    &quot;nodes&quot;: [
+    ]
+}
+</code></pre>
+
+<ul>
+<li>
+<p><strong>name:</strong> This is the name of your package which will be shown in the user preferences.</p>
+</li>
+<li>
+<p><strong>description:</strong> This is the description of your package which will be shown in the user preferences.</p>
+</li>
+<li>
+<p><strong>autor:</strong> You can put your name here to be shown in the user preferences.</p>
+</li>
+<li>
+<p><strong>nodes:</strong> This is a list of all nodes that are contained in your package. This is explained below.</p>
+</li>
+</ul>
+<p>The package_info.json file goes in the root of your zip file. The node category folders with the nodes python files should also go in the zip file. The folder structure should look like this:</p>
+<pre><code class="python">.
+├── package_info.json
+├── Interface
+│   └── new_node.py
+├── New Category
+│   ├── my_node.py
+│   └── my_other_node.py
+</code></pre>
+
+<p>The <strong>nodes</strong> parameter in the package_json should be a list of strings. Those strings should be relative filepaths to the different nodes.<br>The example above would look like this:</p>
+<pre><code class="json">[&quot;Interface/new_node.py&quot;,
+&quot;New Category/my_node.py&quot;,
+&quot;New Category/my_other_node.py&quot;]
+</code></pre>
+
+<p>As mentioned before, you do not need to add the __init__.py files to these category folders.</p>
+<h1 id="wrapping-up">Wrapping Up</h1>
+<p>Once you finished packing up your zip file you are ready to distribute it to other people! Once again, make sure to let us know if you create a package so we can promote it and add it to the marketplace for other people to find. This is purely benefitial for you, no matter if you sell the package or give it away for free.</p>
+<p>If you have any other question, please let us know <a href="https://discord.gg/NK6kyae">on discord</a> or <a href="https://twitter.com/joshuaKnauber">on twitter</a>.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../socket_handler/" class="btn btn-neutral" title="Socket Handler"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../socket_handler/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
