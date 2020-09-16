@@ -41,6 +41,7 @@ class SN_PrintNode(bpy.types.Node, SN_ScriptingBaseNode):
     bl_width_max = 5000
     node_color = (0.2, 0.2, 0.2)
     should_be_registered = False
+    min_blender_version = (2,83,0)
     docs = {
         "text": ["The print node is used to <important>write things to the console</>.",
                 "",
@@ -71,6 +72,8 @@ You can treat this as a normal blender python class, meaning you can add propert
 * **node_color**: This is the color of your node. Make sure to keep these pleasing for the eye and consistent between node types.
 <br><br>
 * **should_be_registered**: This is a very important argument as it determines if the node should be registered or not. We will go over this again below.
+<br><br>
+* **min_blender_version**: This is the minimum required blender version for this node. If it isn't above this version it will return empty code and an error. Make sure to provide the version in the format of ```bpy.app.version```: (x,xx,x)
 <br><br>
 * **docs**: This is the documentation for your node. It will be explained below as well.
 
