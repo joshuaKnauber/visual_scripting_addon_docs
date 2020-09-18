@@ -2,6 +2,7 @@ site_name: Serpens - Visual Scripting Addon
 theme: 'readthedocs'
 markdown_extensions:
   - admonition
+  - attr_list
 
 
 nav:
