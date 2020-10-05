@@ -1,10 +1,10 @@
 {
     "packages": [
         {
-            "title": "Test package",
-            "text": ["This is how a package could look.", "This would be a short description."],
-            "price": "Your Price",
-            "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+            "title": "placeholder",
+            "text": ["",""],
+            "price": "-",
+            "url": ""
         }
     ]
 }
