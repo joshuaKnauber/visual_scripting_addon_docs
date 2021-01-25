@@ -54,7 +54,7 @@ node_options = {
 Serpens nodes have certain properties that can be useful in development:
 
 **uid**
-> This is a unique identifier for this node. You might sometimes want to use this to make sure your generated python names 
+> This is a unique identifier for this node. You might sometimes want to use this to make sure your generated python names are unique across different addons or different nodes
 
 **node_tree**
 > This is the node tree your node is currently in. You can use this at all times in your code

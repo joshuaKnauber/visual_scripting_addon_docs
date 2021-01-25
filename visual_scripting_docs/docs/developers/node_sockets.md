@@ -41,7 +41,7 @@ To remove sockets simply use ```self.inputs.remove(input)``` or ```self.outputs.
 The functions return the socket which allows you to set a bunch of parameters depending on the socket type:
 
 **group** [All socket types, readonly] (str)
-> Set to ```DATA``` for all socketes except for Interface and Execute where it is ```PROGRAM``` 
+> Set to ```DATA``` for all sockets except for Interface and Execute where it is ```PROGRAM``` 
 
 **socket_type** [All socket types, readonly] (str)
 > The type of the socket
@@ -59,16 +59,13 @@ The functions return the socket which allows you to set a bunch of parameters de
 > Boolean that tells you if the socket is dynamic
 
 **copy_socket** [All socket types] (boolean)
-> Boolean that tells you if the dynamic socket should copy all of the properties when a socket is connected. This includes type, name, etc.
+> Boolean that should be set to true on a dynamic socket if you want it to copy all the properties of the connected socket. This includes the socket type, name, etc.
 
 **removable** [All socket types] (boolean)
 > Boolean that defines if this socket shows a remove button
 
 **addable** [All socket types, readonly] (boolean)
 > Boolean that defines if this socket shows an add button for adding another socket of this type
-
-**to_add_idname** [All socket types, readonly] (string)
-> Required if addable or dynamic is true. Should be set to the idname that is added by this socket
 
 **disableable** [All socket types] (boolean)
 > Shows an eye icon on the socket to disable this socket
@@ -98,7 +95,7 @@ The functions return the socket which allows you to set a bunch of parameters de
 > If enabled together with show_var_name, the variable name can be edited on the socket
 
 **data_type** [Blend Data] (string)
-> Should be set to the data type of this socket. This is something from ```bpy.types```
+> Should be set to the data type of this socket. This is something from ```bpy.types```. For ```bpy.types.Object``` it should be set to ```Object```
 
 **data_name** [Blend Data] (string)
 > Should be set to the name of this sockets data type

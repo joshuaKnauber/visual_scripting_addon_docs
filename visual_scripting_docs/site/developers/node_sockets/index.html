@@ -148,7 +148,7 @@
 <p>The functions return the socket which allows you to set a bunch of parameters depending on the socket type:</p>
 <p><strong>group</strong> [All socket types, readonly] (str)</p>
 <blockquote>
-<p>Set to <code>DATA</code> for all socketes except for Interface and Execute where it is <code>PROGRAM</code> </p>
+<p>Set to <code>DATA</code> for all sockets except for Interface and Execute where it is <code>PROGRAM</code> </p>
 </blockquote>
 <p><strong>socket_type</strong> [All socket types, readonly] (str)</p>
 <blockquote>
@@ -171,7 +171,7 @@
 </blockquote>
 <p><strong>copy_socket</strong> [All socket types] (boolean)</p>
 <blockquote>
-<p>Boolean that tells you if the dynamic socket should copy all of the properties when a socket is connected. This includes type, name, etc.</p>
+<p>Boolean that should be set to true on a dynamic socket if you want it to copy all the properties of the connected socket. This includes the socket type, name, etc.</p>
 </blockquote>
 <p><strong>removable</strong> [All socket types] (boolean)</p>
 <blockquote>
@@ -180,10 +180,6 @@
 <p><strong>addable</strong> [All socket types, readonly] (boolean)</p>
 <blockquote>
 <p>Boolean that defines if this socket shows an add button for adding another socket of this type</p>
-</blockquote>
-<p><strong>to_add_idname</strong> [All socket types, readonly] (string)</p>
-<blockquote>
-<p>Required if addable or dynamic is true. Should be set to the idname that is added by this socket</p>
 </blockquote>
 <p><strong>disableable</strong> [All socket types] (boolean)</p>
 <blockquote>
@@ -223,7 +219,7 @@
 </blockquote>
 <p><strong>data_type</strong> [Blend Data] (string)</p>
 <blockquote>
-<p>Should be set to the data type of this socket. This is something from <code>bpy.types</code></p>
+<p>Should be set to the data type of this socket. This is something from <code>bpy.types</code>. For <code>bpy.types.Object</code> it should be set to <code>Object</code></p>
 </blockquote>
 <p><strong>data_name</strong> [Blend Data] (string)</p>
 <blockquote>

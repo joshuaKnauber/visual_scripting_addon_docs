@@ -44,5 +44,5 @@ These are functions which you can use to update nodes:
 **update_nodes_by_type(self, idname)**
 > This function is used to update every node with the given idname. It calls ```on_outside_update``` on these nodes
 
-**update_nodes_by_types(self, idname_list)**
-> This function is like the one above but takes a list of idnames
+**update_nodes_by_types(self, *idnames)**
+> This function is like the one above but takes any amount of idnames as parameters
