@@ -1,55 +1,52 @@
 # Distribution
 
-To distribute your package, create a zip file. The name of this file doesn't affect the package itself.
-
-
-## Package Info
-
-To distribute your package to others, you'll need to create a _package_info.json_ file.
-
-The file should look like this:
-
-```json
-{
-    "name": "Name Of Your Package",
-    "description": "This is the packages description",
-    "author": "Your Name",
-    "nodes": [
-    ]
-}
-```
-
-* **name:** This is the name of your package which will be shown in the user preferences.
-
-* **description:** This is the description of your package which will be shown in the user preferences.
-
-* **autor:** You can put your name here to be shown in the user preferences.
-
-* **nodes:** This is a list of all nodes that are contained in your package. This is explained below.
-
-The package_info.json file goes in the root of your zip file. The node category folders with the nodes python files should also go in the zip file. The folder structure should look like this:
+To distribute your packages you need to pack your nodes into a zip file. This zip file should include all your python files in the correct node category folders as well as a package_info.json file. Make sure to include empty _\_init__.py files for any new categories.
 
 ```python
-.
+my_package.zip
+|
 ├── package_info.json
+|
 ├── Interface
 │   └── new_node.py
+|
 ├── New Category
+|   ├──__init__.py
 │   ├── my_node.py
 │   └── my_other_node.py
 ```
 
-The **nodes** parameter in the package_json should be a list of strings. Those strings should be relative filepaths to the different nodes.<br>The example above would look like this:
-```json
-["Interface/new_node.py",
-"New Category/my_node.py",
-"New Category/my_other_node.py"]
+## Package Info
+
+The package_info.json should look as follows. You can copy this as a base:
+```javascript
+{
+    "name": "The Name Of Your Package",
+    "description": "A description of your package that shouldn't be longer than this",
+    "author": "Your Name",
+    "wiki_url": "https://www.yourpackagewiki.com",
+    "package_version": [1,0,0],
+    "serpens_versions": [[2,0,0]]
+}
 ```
 
-As mentioned before, you do not need to add the \_\_init\_\_.py files to these category folders.
 
-#Wrapping Up
+## Checklist
 
-Once you finished packing up your zip file you are ready to distribute it to other people! Once again, make sure to let us know if you create a package so we can promote it and add it to the marketplace for other people to find. This is purely benefitial for you, no matter if you sell the package or give it away for free.
+* Have you called auto_compile everywhere to make sure the compiler registers changes?
+* Have you caught any possible errors that the user could encounter?
+* Have you set proper and consistent names?
 
-If you have any other question, please let us know [on discord](https://discord.gg/NK6kyae) or [on twitter](https://twitter.com/joshuaKnauber).
+
+## Ways of distributing
+
+When you are done with creating your package you are ready to distribute it.
+
+Here's what you need to know:
+
+* You can sell your package if you want
+* You do not need to pay us anything for your sales
+* Inform your customers that they need Serpens to use your product
+* We are always happy to promote your package
+
+Please message us on discord if you have a package that you want to share so we can add it to the package marketplace as well as let people know about it. This will help both of us to get more interest in Serpens and your packages.

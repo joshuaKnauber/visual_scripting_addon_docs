@@ -1,5 +1,5 @@
 site_name: Serpens - Visual Scripting Addon
-theme: 'readthedocs'
+theme: readthedocs
 markdown_extensions:
   - admonition
   - attr_list
@@ -8,8 +8,16 @@ markdown_extensions:
 nav:
   - Introduction: index.md
 
-  - Documentation:
-    - Getting Started: developers/getting_started.md
-    - Creating A Node: developers/create_node.md
-    - Socket Handler: developers/socket_handler.md
+  - Getting Started:
+    - Basics: developers/getting_started.md
+    - Setup: developers/setup.md
+  - Nodes:
+    - Basics: developers/nodes.md
+    - Node Options: developers/node_options.md
+    - Sockets: developers/node_sockets.md
+    - Events: developers/node_events.md
+    - Draw Node: developers/node_draw.md
+    - Generating Code: developers/node_code.md
+    - Node Functions: developers/node_functions.md
+  - Distribution:
     - Distribution: developers/distribution.md

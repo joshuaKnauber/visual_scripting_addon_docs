@@ -52,17 +52,37 @@
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#content">Content</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#philosophy">Philosophy</a>
+    </li>
     </ul>
                     </li>
                 </ul>
-                <p class="caption"><span class="caption-text">Documentation</span></p>
+                <p class="caption"><span class="caption-text">Getting Started</span></p>
                 <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="developers/getting_started/">Getting Started</a>
+                    <li class="toctree-l1"><a class="reference internal" href="developers/getting_started/">Basics</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="developers/create_node/">Creating A Node</a>
+                    <li class="toctree-l1"><a class="reference internal" href="developers/setup/">Setup</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="developers/socket_handler/">Socket Handler</a>
+                </ul>
+                <p class="caption"><span class="caption-text">Nodes</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="developers/nodes/">Basics</a>
                     </li>
+                    <li class="toctree-l1"><a class="reference internal" href="developers/node_options/">Node Options</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="developers/node_sockets/">Sockets</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="developers/node_events/">Events</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="developers/node_draw/">Draw Node</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="developers/node_code/">Generating Code</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="developers/node_functions/">Node Functions</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Distribution</span></p>
+                <ul>
                     <li class="toctree-l1"><a class="reference internal" href="developers/distribution/">Distribution</a>
                     </li>
                 </ul>
@@ -99,10 +119,14 @@
             <div class="section">
               
                 <h1 id="introduction">Introduction</h1>
-<p>This is the documentation for developing packages for the Serpens - Visual Scripting Addon. It is not a documentation on how to use the addon, that is built in.</p>
+<p><strong>THIS PAGE IS ONLY FOR PYTHON DEVELOPERS!</strong></p>
+<p>This is the documentation for developing packages for the Serpens - Visual Scripting Addon. It is <strong>not</strong> a documentation on how to use the addon.</p>
 <h3 id="content">Content</h3>
-<p>This documentation goes over creating nodes in specific categories. It will give you an overview of the different functions you need to work with.</p>
+<p>This documentation goes over creating your own nodes with python. It will give you an overview of the different functions you need to work with and how to set up your packages.</p>
 <p>It also explains how to distribute your packages to others.</p>
+<h3 id="philosophy">Philosophy</h3>
+<p>The aim of Serpens is to make addon development accessible to more people, not to replace python. If people can learn enough from Serpens to at some point not use it anymore and switch to python then that's a success.</p>
+<p>For packages that means that the goal is not to generate the most efficient python code possible, but to provide the best user experience while doing so. Users should have to be confronted with as little errors as possible and if you need to give errors they should be easily understandable. The best possible outcome is that everything is easy to use but has a lot of possibilities if you combine it with more complex systems or even custom python scripts.</p>
               
             </div>
           </div>
@@ -110,7 +134,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="developers/getting_started/" class="btn btn-neutral float-right" title="Getting Started">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="developers/getting_started/" class="btn btn-neutral float-right" title="Basics">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
     </div>
@@ -156,5 +180,5 @@
 
 <!--
 MkDocs version : 1.1.2
-Build Date UTC : 2020-10-07 21:35:55.293441+00:00
+Build Date UTC : 2021-01-25 15:44:05.469779+00:00
 -->

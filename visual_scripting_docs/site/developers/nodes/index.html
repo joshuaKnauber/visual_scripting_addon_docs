@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Distribution - Serpens - Visual Scripting Addon</title>
+  <title>Basics - Serpens - Visual Scripting Addon</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../css/theme.css" />
@@ -18,8 +18,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Distribution";
-    var mkdocs_page_input_path = "developers\\distribution.md";
+    var mkdocs_page_name = "Basics";
+    var mkdocs_page_input_path = "developers\\nodes.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -59,8 +59,12 @@
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Nodes</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../nodes/">Basics</a>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Basics</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#example-node">Example Node</a>
+    </li>
+    </ul>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../node_options/">Node Options</a>
                     </li>
@@ -76,16 +80,8 @@
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Distribution</span></p>
-                <ul class="current">
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Distribution</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#package-info">Package Info</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#checklist">Checklist</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#ways-of-distributing">Ways of distributing</a>
-    </li>
-    </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../distribution/">Distribution</a>
                     </li>
                 </ul>
       </div>
@@ -109,11 +105,11 @@
     
       
         
-          <li>Distribution &raquo;</li>
+          <li>Nodes &raquo;</li>
         
       
     
-    <li>Distribution</li>
+    <li>Basics</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -124,49 +120,47 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="distribution">Distribution</h1>
-<p>To distribute your packages you need to pack your nodes into a zip file. This zip file should include all your python files in the correct node category folders as well as a package_info.json file. Make sure to include empty __init__.py files for any new categories.</p>
-<pre><code class="python">my_package.zip
-|
-├── package_info.json
-|
-├── Interface
-│   └── new_node.py
-|
-├── New Category
-|   ├──__init__.py
-│   ├── my_node.py
-│   └── my_other_node.py
-</code></pre>
+                <h1 id="creating-a-node">Creating A Node</h1>
+<p>Below you can find an empty example node which you can copy to quickly get started.</p>
+<p>In theory you could put multiple nodes into one file, but we don't recommend doing that to keep your files better organized.</p>
+<h2 id="example-node">Example Node</h2>
+<p>Copy this code to get a base for your own nodes:</p>
+<pre><code class="python">import bpy
+from ...node_tree.base_node import SN_ScriptingBaseNode
 
-<h2 id="package-info">Package Info</h2>
-<p>The package_info.json should look as follows. You can copy this as a base:</p>
-<pre><code class="javascript">{
-    &quot;name&quot;: &quot;The Name Of Your Package&quot;,
-    &quot;description&quot;: &quot;A description of your package that shouldn't be longer than this&quot;,
-    &quot;author&quot;: &quot;Your Name&quot;,
-    &quot;wiki_url&quot;: &quot;https://www.yourpackagewiki.com&quot;,
-    &quot;package_version&quot;: [1,0,0],
-    &quot;serpens_versions&quot;: [[2,0,0]]
-}
-</code></pre>
 
-<h2 id="checklist">Checklist</h2>
-<ul>
-<li>Have you called auto_compile everywhere to make sure the compiler registers changes?</li>
-<li>Have you caught any possible errors that the user could encounter?</li>
-<li>Have you set proper and consistent names?</li>
-</ul>
-<h2 id="ways-of-distributing">Ways of distributing</h2>
-<p>When you are done with creating your package you are ready to distribute it.</p>
-<p>Here's what you need to know:</p>
-<ul>
-<li>You can sell your package if you want</li>
-<li>You do not need to pay us anything for your sales</li>
-<li>Inform your customers that they need Serpens to use your product</li>
-<li>We are always happy to promote your package</li>
-</ul>
-<p>Please message us on discord if you have a package that you want to share so we can add it to the package marketplace as well as let people know about it. This will help both of us to get more interest in Serpens and your packages.</p>
+
+class SN_MyNode(bpy.types.Node, SN_ScriptingBaseNode):
+
+    bl_idname = &quot;SN_MyNode&quot;
+    bl_label = &quot;My Node&quot;
+    bl_width_default = 160
+
+    node_options = {
+        &quot;default_color&quot;: (0.3,0.3,0.3),
+    }
+
+
+    def on_create(self,context):
+        self.add_execute_input(&quot;Execute&quot;)
+        self.add_boolean_input(&quot;Boolean&quot;)
+
+        self.add_execute_output(&quot;Execute&quot;).mirror_name = True
+
+
+    def draw_node(self, context, layout):
+        layout.label(text=&quot;My Node Label&quot;)
+
+
+    def code_evaluate(self, context, touched_socket):
+
+        return {
+            &quot;code&quot;: f&quot;&quot;&quot;
+                    print({self.inputs[&quot;Boolean&quot;].code()})
+                    {self.outputs[0].code(5)}
+                    &quot;&quot;&quot;
+        }
+</code></pre>
               
             </div>
           </div>
@@ -174,8 +168,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="../node_options/" class="btn btn-neutral float-right" title="Node Options">Next <span class="icon icon-circle-arrow-right"></span></a>
       
-        <a href="../node_functions/" class="btn btn-neutral" title="Node Functions"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+        <a href="../setup/" class="btn btn-neutral" title="Setup"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -201,8 +197,10 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../node_functions/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../setup/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
+      
+        <span style="margin-left: 15px"><a href="../node_options/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Node Functions - Serpens - Visual Scripting Addon</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Node Functions";
+    var mkdocs_page_input_path = "developers\\node_functions.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Serpens - Visual Scripting Addon</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">Introduction</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Getting Started</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../getting_started/">Basics</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../setup/">Setup</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Nodes</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../nodes/">Basics</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../node_options/">Node Options</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../node_sockets/">Sockets</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../node_events/">Events</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../node_draw/">Draw Node</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../node_code/">Generating Code</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Node Functions</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#compiler-functions">Compiler functions</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#related-node-information">Related node information</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#unique-names">Unique names</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#node-collections">Node Collections</a>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Distribution</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../distribution/">Distribution</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Serpens - Visual Scripting Addon</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Nodes &raquo;</li>
+        
+      
+    
+    <li>Node Functions</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="node-functions">Node Functions</h1>
+<p>These are functions that are also important for you to work with. They are split into different categories:</p>
+<p><br></br></p>
+<h2 id="compiler-functions">Compiler functions</h2>
+<p>These are functions that you can call from your node which are required for the compiling to work:</p>
+<p><strong>auto_compile(self, context)</strong></p>
+<blockquote>
+<p>This function is needed to make your node work with the compiler and to register any changes you're making. Make sure to call this function as the update function for node properties and in other cases where you update your node internally and the user needs to recompile. The function is part of your node</p>
+</blockquote>
+<p><strong>add_error(self, title, description, fatal=False)</strong></p>
+<blockquote>
+<p>This function is used to add errors to the error panel. These should be shown when there are things the user didn't do properly and which should cause an error. These are not shown in the system console and should always be preferred over real python errors. It is an opportunity for you to improve the experience of the user with debugging. The function takes a title, a description and a boolean for defining if the error was fatal. A fatal error is something that is fundamentally different from what the user expected to happen. Fatal errors will cause a popup to appear informing the user of the error. This function is also part of your node</p>
+</blockquote>
+<p><br></br></p>
+<h2 id="related-node-information">Related node information</h2>
+<p>Sometimes you need to get information about connected nodes. These functions can help you with that:</p>
+<p><strong>what_layout(self, socket)</strong></p>
+<blockquote>
+<p>This function is used for Interface nodes only. It returns a string which helps you get the layout type that the previous node is using. This could for example be a panel which returns <code>`layout</code> or a row returning <code>row</code> or a split interface node returning <code>split</code>. You use it to put your layouts in the right place, so for example <code>{YOUR_LAYOUT}.label(text="")</code> where you would get <em>YOUR_LAYOUT</em> with this function</p>
+</blockquote>
+<p><strong>what_start_idname(self)</strong></p>
+<blockquote>
+<p>This will give you the idname of the node starting your node tree. This only works with execute and interface sockets. The function will try to follow these sockets until it finds the first node in the tree and give you the idname</p>
+</blockquote>
+<p><strong>what_start_node(self)</strong></p>
+<blockquote>
+<p>This acts the same way the function above does but gives you the start node instead of its idname</p>
+</blockquote>
+<p><br></br></p>
+<h2 id="unique-names">Unique names</h2>
+<p>Sometimes you need unique names or python compatible names. These are functions to help you with that:</p>
+<p><strong>get_python_name(self, name, empty_name="")</strong></p>
+<blockquote>
+<p>This is a function for making any text into a valid python name. This can then be used as a variable name, a function name, etc.. The empty name is what is used if the provided name is empty or equates to empty when it's made into a valid python name</p>
+</blockquote>
+<p><strong>get_unique_name(self, name, collection, separator="_")</strong></p>
+<blockquote>
+<p>This gives you a unique name for a given collection property or list of strings. It will try to increment a number at the end of the name if it finds one. If it doesn't, it will use the separator and add a number</p>
+</blockquote>
+<p><strong>get_unique_python_name(self, name, empty_name, collection, separator="_")</strong></p>
+<blockquote>
+<p>This is a combination of the two functions above which will give you a unique python name</p>
+</blockquote>
+<p><br></br></p>
+<h2 id="node-collections">Node Collections</h2>
+<p>These are functions which you can use to access the node collections. These are related to the has_collection parameter in the node options. In general collections are stored in the addon tree and accessible from nodes with <code>self.addon_tree.sn_nodes[node_idname]</code>. This gives you a property group with a name and items. The items are a collection property which hold all node items with that idname. These have a <code>name</code>, the <code>node_uid</code> and a function called <code>node()</code> to get the actual node belonging to the item:</p>
+<p><strong>collection</strong></p>
+<blockquote>
+<p>This is a property function (call it like a property on the node) which returns the collection for this node. It is a shortcut for <code>self.addon_tree.sn_nodes[self.bl_idname]</code></p>
+</blockquote>
+<p><strong>item</strong></p>
+<blockquote>
+<p>This is a property function which returns this nodes item from the collection for this node</p>
+</blockquote>
+<p><strong>add_required_to_collection(self, idname_list)</strong></p>
+<blockquote>
+<p>This should be used in <code>on_create</code> to set up nodes collections if you need to access them. An example is the run operator node which adds a collection for the operator node as it needs to use a prop_search to find operator nodes. Collections are automatically created when a node is added but if none of the required type have been added yet this collection won't exist</p>
+</blockquote>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../distribution/" class="btn btn-neutral float-right" title="Distribution">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../node_code/" class="btn btn-neutral" title="Generating Code"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../node_code/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../distribution/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Generating Code - Serpens - Visual Scripting Addon</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Generating Code";
+    var mkdocs_page_input_path = "developers\\node_code.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Serpens - Visual Scripting Addon</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">Introduction</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Getting Started</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../getting_started/">Basics</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../setup/">Setup</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Nodes</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../nodes/">Basics</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../node_options/">Node Options</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../node_sockets/">Sockets</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../node_events/">Events</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../node_draw/">Draw Node</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Generating Code</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#socket-code">Socket Code</a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../node_functions/">Node Functions</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Distribution</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../distribution/">Distribution</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Serpens - Visual Scripting Addon</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Nodes &raquo;</li>
+        
+      
+    
+    <li>Generating Code</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="generating-code">Generating code</h1>
+<p>These are the most important functions in your node. They are being used by the compiler to get the actual code that makes up the final addon. They all need to return a dictionary with the <code>code</code> key in it. This contains a string which makes up the code.</p>
+<pre><code class="python">def code_evaluate(self,context,touched_socket):
+    variable = &quot;variables&quot;
+    return {
+        &quot;code&quot;: f&quot;&quot;&quot;
+                # this is multiline code
+                # we use formatted strings to add {variable}
+                # the leftmost character is used as the base level for indentation
+                    # so to indent code you - well... - you indent it...
+                &quot;&quot;&quot;
+    }
+</code></pre>
+
+<pre><code class="python">def code_evaluate(self,context,touched_socket):
+    variable = &quot;string&quot;
+    return {
+        &quot;code&quot;: f&quot;# this is an inline {variable}. It won't cause a linebreak in the final code&quot;
+    }
+</code></pre>
+
+<p>Formatted strings are used to put in properties from your node or the values of sockets. These are the functions that you can overwrite:</p>
+<p><strong>code_evaluate(self, context, touched_socket)</strong></p>
+<blockquote>
+<p>This function is used to return the main code for the node. It is called for the start of the node tree and when requesting code from connected nodes. The touched socket is the socket which code was requested from. For data sockets this is always an output where as for execute and interface sockets this is always an input</p>
+</blockquote>
+<p><strong>code_imperative(self, context)</strong></p>
+<blockquote>
+<p>This function is used to return imperative code. This will be added at the top of the addon file unrelated to anything else and won't be indented by other code</p>
+</blockquote>
+<p><strong>code_imports(self, context)</strong></p>
+<blockquote>
+<p>This function is used to return the code needed for importing. Serpens addons import <code>bpy, os, math</code> by default so you don't need to import that again</p>
+</blockquote>
+<p><strong>code_register(self, context)</strong></p>
+<blockquote>
+<p>This returns the code that is used to register this node in code. This code will be added to the addons <code>register()</code> function</p>
+</blockquote>
+<p><strong>code_unregister(self, context)</strong></p>
+<blockquote>
+<p>This returns the code that is used to unregister this node in code. This code will be added to the addons <code>unregister()</code> function</p>
+</blockquote>
+<p><br></br></p>
+<h2 id="socket-code">Socket Code</h2>
+<p>With the functions above you should be able to return code from a single node. But if you have inputs or outputs that need to interact with other nodes to get you code, you can use the following functions:</p>
+<p>socket.<strong>code(indents=0)</strong></p>
+<blockquote>
+<p>This is certainly the most used function in this category. You call it on the socket of <em>your</em> node that you want to get the code from. An example would be if you have an integer input. You can use formatted code to put the value you get from the socket into your code. You will then call <code>self.inputs["My Integer Socket"].code()</code> on your socket and will get the correct code. This takes into account the value set on the socket itself as well as any connected nodes.</p>
+<p>If you have a math node connected to your input it will automatically handle calling <code>code_evaluate</code> on that node and give you the code for the math operation. It will also take care of possible errors with different connected data types. If a boolean socket was connected to your integer input it will try to cast it into an integer.</p>
+<p>While you would always call this function on inputs for data, you always have to call it on your nodes outputs for interface and execute. If you have an execute output leading to the next node you will call <code>self.outputs[0].code(5)</code> to get the code. As you can see in the example node at the top of this page, you'll have to provide indents for this. These indents are the number of indents you can see in your node python file. This is used if the function returns multiple lines of code which is almost always the case for Program sockets.</p>
+<p>If you are having trouble understanding this function have a look at some of the simpler nodes Serpens has, they all use this a lot</p>
+</blockquote>
+<p>socket.<strong>by_name(indents=0, separator="")</strong></p>
+<blockquote>
+<p>This function acts like the code function but can be used for dynamic sockets. Dynamic sockets will give you a arbitrary amount of sockets with the same name which you would have to account for. This function lets you get all of that code from one socket. Call it on a socket with the name you want and it will return all the code you need. Apart from indents you can also give it a separator which you can for example use to separate all the given values by comma</p>
+</blockquote>
+<p>socket.<strong>by_type(indents=0, separator="")</strong></p>
+<blockquote>
+<p>This function does the same as the by_name function but for the socket type. It will give you the code for all sockets with the type of the socket you call it on</p>
+</blockquote>
+<p>node.<strong>list_code(value_list, indents=0)</strong></p>
+<blockquote>
+<p>If the two functions above don't work for you for some reason, you can use this function to achieve the same with any given code. You pass it a list of strings which represent your code and give it the indents that your code should have</p>
+</blockquote>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../node_functions/" class="btn btn-neutral float-right" title="Node Functions">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../node_draw/" class="btn btn-neutral" title="Draw Node"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../node_draw/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../node_functions/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

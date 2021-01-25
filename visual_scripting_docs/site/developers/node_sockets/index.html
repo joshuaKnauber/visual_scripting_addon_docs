@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Sockets - Serpens - Visual Scripting Addon</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Sockets";
+    var mkdocs_page_input_path = "developers\\node_sockets.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Serpens - Visual Scripting Addon</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">Introduction</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Getting Started</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../getting_started/">Basics</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../setup/">Setup</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Nodes</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../nodes/">Basics</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../node_options/">Node Options</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Sockets</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#socket-properties">Socket Properties</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#socket-utility-functions">Socket Utility Functions</a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../node_events/">Events</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../node_draw/">Draw Node</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../node_code/">Generating Code</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../node_functions/">Node Functions</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Distribution</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../distribution/">Distribution</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Serpens - Visual Scripting Addon</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Nodes &raquo;</li>
+        
+      
+    
+    <li>Sockets</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="node-sockets">Node Sockets</h1>
+<pre><code class="python">def on_create(self,context):
+    self.add_execute_input(&quot;Execute&quot;)
+    self.add_boolean_input(&quot;Boolean&quot;)
+    self.add_execute_output(&quot;Execute&quot;).mirror_name = True
+</code></pre>
+
+<p>To set up the basic sockets of your node, add them in <code>on_create</code>. The functions for adding inputs and outputs are all based on the node, meaning you can call them with <code>self.add_TYPE_SOCKET("My Socket")</code> where <em>TYPE</em> is the type of the socket you're adding and <em>SOCKET</em> is either input or output.</p>
+<p>There are functions for all different socket types. Some of them are also dynamic, which means that they are placeholders until another socket is connected or the add button is pressed which will add another socket with the same type and name before it. Each of the following functions is called on the node and takes in the name of the socket as a parameter. They all return the socket they create:</p>
+<p><strong>add_interface_input/add_interface_output/add_dynamic_interface_input/add_dynamic_interface_output</strong> [Interface]</p>
+<p><strong>add_execute_input/...</strong> [Execute]</p>
+<p><strong>add_string_input/...</strong> [String]</p>
+<p><strong>add_boolean_input/...</strong> [Boolean]</p>
+<p><strong>add_float_input/...</strong> [Float]</p>
+<p><strong>add_integer_input/...</strong> [Integer]</p>
+<p><strong>add_data_input/...</strong> [Data]</p>
+<p><strong>add_list_input/...</strong> [List]</p>
+<p><strong>add_dynamic_variable_input/add_dynamic_variable_output</strong> [Variable]</p>
+<p><strong>add_icon_input/add_icon_output</strong> [Icon]</p>
+<p><strong>add_blend_data_input/add_blend_data_output</strong> [Blend Data]</p>
+<p>To remove sockets simply use <code>self.inputs.remove(input)</code> or <code>self.outputs.remove(output)</code>.</p>
+<p><br></br>    </p>
+<h2 id="socket-properties">Socket Properties</h2>
+<p>The functions return the socket which allows you to set a bunch of parameters depending on the socket type:</p>
+<p><strong>group</strong> [All socket types, readonly] (str)</p>
+<blockquote>
+<p>Set to <code>DATA</code> for all socketes except for Interface and Execute where it is <code>PROGRAM</code> </p>
+</blockquote>
+<p><strong>socket_type</strong> [All socket types, readonly] (str)</p>
+<blockquote>
+<p>The type of the socket</p>
+</blockquote>
+<p><strong>subtype</strong> [All socket types] (str)</p>
+<blockquote>
+<p>The subtype of the socket. This is different for each type of socket:</p>
+</blockquote>
+<ul>
+<li>String (NONE, FILE, DIRECTORY, ENUM)</li>
+<li>Boolean (NONE, VECTOR3, VECTOR4)</li>
+<li>Float (NONE, FACTOR, COLOR, COLOR_ALPHA, VECTOR3, VECTOR4)</li>
+<li>Integer (NONE, VECTOR3, VECTOR4)</li>
+<li>Blend Data (NONE, COLLECTION)</li>
+</ul>
+<p><strong>dynamic</strong> [All socket types, readonly] (boolean)</p>
+<blockquote>
+<p>Boolean that tells you if the socket is dynamic</p>
+</blockquote>
+<p><strong>copy_socket</strong> [All socket types] (boolean)</p>
+<blockquote>
+<p>Boolean that tells you if the dynamic socket should copy all of the properties when a socket is connected. This includes type, name, etc.</p>
+</blockquote>
+<p><strong>removable</strong> [All socket types] (boolean)</p>
+<blockquote>
+<p>Boolean that defines if this socket shows a remove button</p>
+</blockquote>
+<p><strong>addable</strong> [All socket types, readonly] (boolean)</p>
+<blockquote>
+<p>Boolean that defines if this socket shows an add button for adding another socket of this type</p>
+</blockquote>
+<p><strong>to_add_idname</strong> [All socket types, readonly] (string)</p>
+<blockquote>
+<p>Required if addable or dynamic is true. Should be set to the idname that is added by this socket</p>
+</blockquote>
+<p><strong>disableable</strong> [All socket types] (boolean)</p>
+<blockquote>
+<p>Shows an eye icon on the socket to disable this socket</p>
+</blockquote>
+<p><strong>enabled</strong> [All socket types] (boolean)</p>
+<blockquote>
+<p>Enables or disables the socket. You can check this in your code functions</p>
+</blockquote>
+<p><strong>default_text</strong> [All socket types] (string)</p>
+<blockquote>
+<p>The displayed text of this socket. Use this instead of name</p>
+</blockquote>
+<p><strong>mirror_name</strong> [All socket types] (boolean)</p>
+<blockquote>
+<p>Mirrors the name of the connected socket if this is enabled. This is purely visual. Execute outputs should mirror the name of the connected socket and so should interface inputs</p>
+</blockquote>
+<p><strong>take_name</strong> [All socket types] (boolean)</p>
+<blockquote>
+<p>Makes this socket take over the name of the socket that is first connected to this socket</p>
+</blockquote>
+<p><strong>variable_name</strong> [All socket types] (string)</p>
+<blockquote>
+<p>The variable name of this socket. This property is used by the variable properties below</p>
+</blockquote>
+<p><strong>return_var_name</strong> [All socket types] (boolean)</p>
+<blockquote>
+<p>Skips the code functions for this socket and just returns the variable name instead</p>
+</blockquote>
+<p><strong>show_var_name</strong> [All socket types] (boolean)</p>
+<blockquote>
+<p>Shows the variable name on the socket</p>
+</blockquote>
+<p><strong>edit_var_name</strong> [All socket types] (boolean)</p>
+<blockquote>
+<p>If enabled together with show_var_name, the variable name can be edited on the socket</p>
+</blockquote>
+<p><strong>data_type</strong> [Blend Data] (string)</p>
+<blockquote>
+<p>Should be set to the data type of this socket. This is something from <code>bpy.types</code></p>
+</blockquote>
+<p><strong>data_name</strong> [Blend Data] (string)</p>
+<blockquote>
+<p>Should be set to the name of this sockets data type</p>
+</blockquote>
+<p><strong>data_identifier</strong> [Blend Data] (string)</p>
+<blockquote>
+<p>Optional property that can be set to the identifier of this blend data type</p>
+</blockquote>
+<p><strong>enum_values</strong> [String] (string)</p>
+<blockquote>
+<p>The enum items if this string is an enum subtype. This should be in the format of <code>"[("ITEM","name","description"),]"</code></p>
+</blockquote>
+<p><br></br>   </p>
+<h2 id="socket-utility-functions">Socket Utility Functions</h2>
+<p>With this you should be able to add sockets. You can also manipulate your sockets after the node is added. There's a bunch of functions which help you with that:</p>
+<p><strong>add_input_from_prop(self, prop)</strong> - <strong>return</strong> input</p>
+<blockquote>
+<p>Takes in a property like StringProperty, BoolProperty, etc. and creates a socket with the proper type and name</p>
+</blockquote>
+<p><strong>add_output_from_prop(self, prop)</strong> - <strong>return</strong> output</p>
+<blockquote>
+<p>See <code>add_input_from_prop</code></p>
+</blockquote>
+<p><strong>enum_items_as_string(self, enum_prop)</strong> - <strong>return</strong> string</p>
+<blockquote>
+<p>Gives you a string which you can set your enum_values of a string socket from an enum property</p>
+</blockquote>
+<p><strong>change_socket_type(self, socket, idname)</strong> - <strong>return</strong> socket</p>
+<blockquote>
+<p>Takes a socket and an idname. It changes the socket type to the given idname but keeps the connections</p>
+</blockquote>
+<p><strong>remove_output_range(self, start_index, end_index=-1)</strong></p>
+<blockquote>
+<p>Removes all outputs from the start index to the end index</p>
+</blockquote>
+<p><strong>remove_input_range(self, start_index, end_index=-1)</strong></p>
+<blockquote>
+<p>Removes all inputs from the start index to the end index</p>
+</blockquote>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../node_events/" class="btn btn-neutral float-right" title="Events">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../node_options/" class="btn btn-neutral" title="Node Options"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../node_options/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../node_events/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

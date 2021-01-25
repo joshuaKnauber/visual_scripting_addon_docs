@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Distribution - Serpens - Visual Scripting Addon</title>
+  <title>Draw Node - Serpens - Visual Scripting Addon</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../css/theme.css" />
@@ -18,8 +18,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Distribution";
-    var mkdocs_page_input_path = "developers\\distribution.md";
+    var mkdocs_page_name = "Draw Node";
+    var mkdocs_page_input_path = "developers\\node_draw.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -59,7 +59,7 @@
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Nodes</span></p>
-                <ul>
+                <ul class="current">
                     <li class="toctree-l1"><a class="reference internal" href="../nodes/">Basics</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../node_options/">Node Options</a>
@@ -68,7 +68,9 @@
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../node_events/">Events</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../node_draw/">Draw Node</a>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Draw Node</a>
+    <ul class="current">
+    </ul>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../node_code/">Generating Code</a>
                     </li>
@@ -76,16 +78,8 @@
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Distribution</span></p>
-                <ul class="current">
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Distribution</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#package-info">Package Info</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#checklist">Checklist</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#ways-of-distributing">Ways of distributing</a>
-    </li>
-    </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../distribution/">Distribution</a>
                     </li>
                 </ul>
       </div>
@@ -109,11 +103,11 @@
     
       
         
-          <li>Distribution &raquo;</li>
+          <li>Nodes &raquo;</li>
         
       
     
-    <li>Distribution</li>
+    <li>Draw Node</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -124,49 +118,16 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="distribution">Distribution</h1>
-<p>To distribute your packages you need to pack your nodes into a zip file. This zip file should include all your python files in the correct node category folders as well as a package_info.json file. Make sure to include empty __init__.py files for any new categories.</p>
-<pre><code class="python">my_package.zip
-|
-├── package_info.json
-|
-├── Interface
-│   └── new_node.py
-|
-├── New Category
-|   ├──__init__.py
-│   ├── my_node.py
-│   └── my_other_node.py
-</code></pre>
-
-<h2 id="package-info">Package Info</h2>
-<p>The package_info.json should look as follows. You can copy this as a base:</p>
-<pre><code class="javascript">{
-    &quot;name&quot;: &quot;The Name Of Your Package&quot;,
-    &quot;description&quot;: &quot;A description of your package that shouldn't be longer than this&quot;,
-    &quot;author&quot;: &quot;Your Name&quot;,
-    &quot;wiki_url&quot;: &quot;https://www.yourpackagewiki.com&quot;,
-    &quot;package_version&quot;: [1,0,0],
-    &quot;serpens_versions&quot;: [[2,0,0]]
-}
-</code></pre>
-
-<h2 id="checklist">Checklist</h2>
-<ul>
-<li>Have you called auto_compile everywhere to make sure the compiler registers changes?</li>
-<li>Have you caught any possible errors that the user could encounter?</li>
-<li>Have you set proper and consistent names?</li>
-</ul>
-<h2 id="ways-of-distributing">Ways of distributing</h2>
-<p>When you are done with creating your package you are ready to distribute it.</p>
-<p>Here's what you need to know:</p>
-<ul>
-<li>You can sell your package if you want</li>
-<li>You do not need to pay us anything for your sales</li>
-<li>Inform your customers that they need Serpens to use your product</li>
-<li>We are always happy to promote your package</li>
-</ul>
-<p>Please message us on discord if you have a package that you want to share so we can add it to the package marketplace as well as let people know about it. This will help both of us to get more interest in Serpens and your packages.</p>
+                <h1 id="draw-node">Draw node</h1>
+<p>To draw properties and other things on your node these functions should help you:</p>
+<p><strong>draw_node(self, context, layout)</strong></p>
+<blockquote>
+<p>This function is the main draw function for the node. You can use it to display properties or other things on your node</p>
+</blockquote>
+<p><strong>draw_node_panel(self, context, layout)</strong></p>
+<blockquote>
+<p>This function is used to draw additional elements in the N-Panel that are not displayed on your node itself. Serpens constrains the UI to the node for all internal nodes but you can use this for packages. You might want to inform the user in some form that you are using the N-Panel as this is not a Serpens standard</p>
+</blockquote>
               
             </div>
           </div>
@@ -174,8 +135,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="../node_code/" class="btn btn-neutral float-right" title="Generating Code">Next <span class="icon icon-circle-arrow-right"></span></a>
       
-        <a href="../node_functions/" class="btn btn-neutral" title="Node Functions"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+        <a href="../node_events/" class="btn btn-neutral" title="Events"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -201,8 +164,10 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../node_functions/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../node_events/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
+      
+        <span style="margin-left: 15px"><a href="../node_code/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

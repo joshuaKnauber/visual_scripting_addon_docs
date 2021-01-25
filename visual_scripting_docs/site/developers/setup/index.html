@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Distribution - Serpens - Visual Scripting Addon</title>
+  <title>Setup - Serpens - Visual Scripting Addon</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../css/theme.css" />
@@ -18,8 +18,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Distribution";
-    var mkdocs_page_input_path = "developers\\distribution.md";
+    var mkdocs_page_name = "Setup";
+    var mkdocs_page_input_path = "developers\\setup.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -52,10 +52,16 @@
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Getting Started</span></p>
-                <ul>
+                <ul class="current">
                     <li class="toctree-l1"><a class="reference internal" href="../getting_started/">Basics</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../setup/">Setup</a>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Setup</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#development-setup">Development Setup</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#summary">Summary</a>
+    </li>
+    </ul>
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Nodes</span></p>
@@ -76,16 +82,8 @@
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Distribution</span></p>
-                <ul class="current">
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Distribution</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#package-info">Package Info</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#checklist">Checklist</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#ways-of-distributing">Ways of distributing</a>
-    </li>
-    </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../distribution/">Distribution</a>
                     </li>
                 </ul>
       </div>
@@ -109,11 +107,11 @@
     
       
         
-          <li>Distribution &raquo;</li>
+          <li>Getting Started &raquo;</li>
         
       
     
-    <li>Distribution</li>
+    <li>Setup</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -124,49 +122,17 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="distribution">Distribution</h1>
-<p>To distribute your packages you need to pack your nodes into a zip file. This zip file should include all your python files in the correct node category folders as well as a package_info.json file. Make sure to include empty __init__.py files for any new categories.</p>
-<pre><code class="python">my_package.zip
-|
-├── package_info.json
-|
-├── Interface
-│   └── new_node.py
-|
-├── New Category
-|   ├──__init__.py
-│   ├── my_node.py
-│   └── my_other_node.py
-</code></pre>
-
-<h2 id="package-info">Package Info</h2>
-<p>The package_info.json should look as follows. You can copy this as a base:</p>
-<pre><code class="javascript">{
-    &quot;name&quot;: &quot;The Name Of Your Package&quot;,
-    &quot;description&quot;: &quot;A description of your package that shouldn't be longer than this&quot;,
-    &quot;author&quot;: &quot;Your Name&quot;,
-    &quot;wiki_url&quot;: &quot;https://www.yourpackagewiki.com&quot;,
-    &quot;package_version&quot;: [1,0,0],
-    &quot;serpens_versions&quot;: [[2,0,0]]
-}
-</code></pre>
-
-<h2 id="checklist">Checklist</h2>
-<ul>
-<li>Have you called auto_compile everywhere to make sure the compiler registers changes?</li>
-<li>Have you caught any possible errors that the user could encounter?</li>
-<li>Have you set proper and consistent names?</li>
-</ul>
-<h2 id="ways-of-distributing">Ways of distributing</h2>
-<p>When you are done with creating your package you are ready to distribute it.</p>
-<p>Here's what you need to know:</p>
-<ul>
-<li>You can sell your package if you want</li>
-<li>You do not need to pay us anything for your sales</li>
-<li>Inform your customers that they need Serpens to use your product</li>
-<li>We are always happy to promote your package</li>
-</ul>
-<p>Please message us on discord if you have a package that you want to share so we can add it to the package marketplace as well as let people know about it. This will help both of us to get more interest in Serpens and your packages.</p>
+                <h1 id="setup">Setup</h1>
+<h2 id="development-setup">Development Setup</h2>
+<p>To actually get started developing we have a few recommendations. To work on a node you want to add to your package, you'll need to temporarily add it to the addon itself.</p>
+<p>Start by finding the folder where you have installed the visual scripting addon. You can find this in the user preferences in the addons panel under <em>File</em>.</p>
+<p><img alt="Node Structure" src="../install_location.jpg" /></p>
+<p>Inside the main Serpens folder you'll find a folder called nodes. This is the folder you'll work in. When you open up the folder you will find the directories corresponding to the node categories, as mentioned in the introduction. These are the installed categories and nodes. When a user installs your package, the zip files content will go in here. You don't need to and can't touch any of the other files in any of the addons folders. You only create your nodes in the corresponding folder for development and then put them in the zip file for distribution.</p>
+<p>To create a new category during development, you create a subfolder in <em>nodes</em> with the corresponding name. Now you need to add a file called __init__.py in that folder. This is for blender to recognize it as a part of the addon, which can be left empty. Note that you <strong>need</strong> to add this file in your final .zip if you are creating a new category. If you only add nodes to an existing category don't add the file.</p>
+<p><img alt="Node Structure" src="../node_structure.jpg" /></p>
+<p>Your new category should then look something like in the image above. If you just want to add a node in an existing category you only need to add your .py file for the node itself in the existing folder. You can have new categories and add nodes to existing ones in one package. Note that empty categories will not be shown, meaning you need to create a node first for it to show up in blenders add menu.</p>
+<h2 id="summary">Summary</h2>
+<p>You should now know how to set up your editor of choice for developing your package. We use VS Code together with Jacques Lucke's <a href="https://marketplace.visualstudio.com/items?itemName=JacquesLucke.blender-development">Blender Development extension</a>. Start by creating a file for a node in a new or existing category. We will now continue with developing a node. Later we will get into how to distribute your package in the mentioned zip file once you are done with development.</p>
               
             </div>
           </div>
@@ -174,8 +140,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="../nodes/" class="btn btn-neutral float-right" title="Basics">Next <span class="icon icon-circle-arrow-right"></span></a>
       
-        <a href="../node_functions/" class="btn btn-neutral" title="Node Functions"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+        <a href="../getting_started/" class="btn btn-neutral" title="Basics"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -201,8 +169,10 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../node_functions/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../getting_started/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
+      
+        <span style="margin-left: 15px"><a href="../nodes/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

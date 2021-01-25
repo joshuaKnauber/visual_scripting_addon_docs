@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Node Options - Serpens - Visual Scripting Addon</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Node Options";
+    var mkdocs_page_input_path = "developers\\node_options.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Serpens - Visual Scripting Addon</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">Introduction</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Getting Started</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../getting_started/">Basics</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../setup/">Setup</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Nodes</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../nodes/">Basics</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Node Options</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#node-properties">Node Properties</a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../node_sockets/">Sockets</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../node_events/">Events</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../node_draw/">Draw Node</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../node_code/">Generating Code</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../node_functions/">Node Functions</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Distribution</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../distribution/">Distribution</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Serpens - Visual Scripting Addon</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Nodes &raquo;</li>
+        
+      
+    
+    <li>Node Options</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="node-options">Node Options</h1>
+<p>The node options tell Serpens what properties this node should have and how it should be treated when compiling. You only need to add the parameters to the node options that you actually want to change. You can see the defaults here:</p>
+<pre><code class="python">node_options = {
+    &quot;default_color&quot;: (0.3,0.3,0.3),
+    &quot;starts_tree&quot;: False,
+    &quot;register_order&quot;: 0,
+    &quot;has_collection&quot;: False,
+    &quot;collection_name_attr&quot;: &quot;name&quot;,
+    &quot;import_once&quot;: True,
+    &quot;evaluate_once&quot;: False,
+    &quot;register_once&quot;: False,
+    &quot;unregister_once&quot;: False,
+    &quot;imperative_once&quot;: False
+}
+</code></pre>
+
+<p><strong>default_color</strong></p>
+<blockquote>
+<p>This is a tuple of three values from 0-1 which sets the default color of the node</p>
+</blockquote>
+<p><strong>starts_tree</strong></p>
+<blockquote>
+<p>This defines if this node should be treated as the beginning of a node branch. This is True for nodes like Panel, Operator, Function, etc.</p>
+</blockquote>
+<p><strong>register_order</strong></p>
+<blockquote>
+<p>This changes the order in which nodes are registered. If you need a certain custom node to be registered before another set this value. Nodes with a lower number will be registered first. For unregister the order will be inverted</p>
+</blockquote>
+<p><strong>has_collection</strong></p>
+<blockquote>
+<p>If this is true there will be an automatically created collection which holds all nodes of this type. This is used in nodes like Run Operator where you need to be able to select one of the nodes in your node tree of a certain type. How you can access these collections will be explained below</p>
+</blockquote>
+<p><strong>collection_name_attr</strong></p>
+<blockquote>
+<p>This is the attribute that your node will be shown with in your collection. By default this is the name of the node, meaning if you have a prop_search for selecting a node, the items will be named with the names of the nodes. The panel node for example has a string property named <em>label</em> which is also used for this property</p>
+</blockquote>
+<p><strong>import_once</strong></p>
+<blockquote>
+<p>If this is True, the <code>code_imports</code> function will only be called once for this node type in all node trees</p>
+</blockquote>
+<p><strong>evaluate_once</strong></p>
+<blockquote>
+<p>If this is True, the <code>code_evaluate</code> function will only be called once for this node type in all node trees</p>
+</blockquote>
+<p><strong>register_once</strong></p>
+<blockquote>
+<p>If this is True, the <code>code_register</code> function will only be called once for this node type in all node trees</p>
+</blockquote>
+<p><strong>unregister_once</strong></p>
+<blockquote>
+<p>If this is True, the <code>code_unregister</code> function will only be called once for this node type in all node trees</p>
+</blockquote>
+<p><strong>imperative_once</strong></p>
+<blockquote>
+<p>If this is True, the <code>code_imperative</code> function will only be called once for this node type in all node trees</p>
+</blockquote>
+<p><br></br></p>
+<h2 id="node-properties">Node Properties</h2>
+<p>Serpens nodes have certain properties that can be useful in development:</p>
+<p><strong>uid</strong></p>
+<blockquote>
+<p>This is a unique identifier for this node. You might sometimes want to use this to make sure your generated python names </p>
+</blockquote>
+<p><strong>node_tree</strong></p>
+<blockquote>
+<p>This is the node tree your node is currently in. You can use this at all times in your code</p>
+</blockquote>
+<p><strong>addon_tree</strong></p>
+<blockquote>
+<p>Because Serpens addons consist of multiple node trees you sometimes need to access the main node tree. It stores information about the addon itself and is generally used as a starting point for some things. You can access it at all times with this property</p>
+</blockquote>
+<p><strong>prop_types</strong></p>
+<blockquote>
+<p>This is a dictionary with property types as keys. It will give you the matching socket type idname. An example would be <code>self.prop_types["BOOLEAN"]</code> which would give you <code>"SN_BooleanSocket"</code></p>
+</blockquote>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../node_sockets/" class="btn btn-neutral float-right" title="Sockets">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../nodes/" class="btn btn-neutral" title="Basics"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../nodes/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../node_sockets/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
