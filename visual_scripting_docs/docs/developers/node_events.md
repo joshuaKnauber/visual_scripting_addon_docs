@@ -6,7 +6,7 @@ These are functions that you can overwrite in your node. They are called on cert
 > This function is called when the node is created. You should add your initial sockets here
 
 **on_copy(self, node)**
-> This function is called when the node is copied. Reset properties here if you need to. It gives you the newly created node which you should use instead of self in this function
+> This function is called when the node is copied. Reset properties here if you need to. It gives you the old node to access
 
 **on_free(self)**
 > This function is called when this node is deleted
